@@ -36,18 +36,31 @@ var text_list = []
 const iatRecorder = new IatRecorder({
   accent:'mandarin',
   onTextChange: function (text) {
-    if (text.length < 3)
+    if (text == '')
       return
+    if (text_list.length >= 1) {
+      //获取第一个字符是否为标点符号
+      let punctuation = text.charAt(0)
+      let reg = /[\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/
+      if (reg.test(punctuation)) {
+        //获取list中最后一个元素
+        let last = text_list.pop()
+        text_list.push(last + punctuation)
+        text = text.substring(1, text.length)
+      }
+    }
     text_list.push(text)
-    axios.get('http://localhost:8989/recommend?str=' + text, {
-      headers: {
-        'token': localStorage.getItem('token')
-      }
-    }).then(res => {
-      if (res.data.code === 200) {
-        console.log(res.data.data.content);
-      }
-    })
+    if (text_list.length % 2 == 0) {
+      axios.get('http://localhost:8989/recommend?str=' + text, {
+        headers: {
+          'token': localStorage.getItem('token')
+        }
+      }).then(res => {
+        if (res.data.code === 200) {
+          console.log(res.data.data.content);
+        }
+      })
+    }
 }})
 
 export default {
