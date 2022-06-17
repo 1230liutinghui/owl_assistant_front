@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header style="line-height: 45px; height: 45px;">
-      <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px; position: fixed"> </el-image>
+      <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px;"> </el-image>
       <b class="top_left_text">猫头鹰助理</b>
     </el-header>
     <el-divider class="el-divider--horizontal"></el-divider>
@@ -41,7 +41,7 @@
         </el-col>
         <el-col :span="8">
           <el-image :src="require('@/assets/7.png')"
-                    style="width: 343px; height: 450px" class="bg_picture">
+                    style="width: 280px; height: 350px" class="bg_picture">
           </el-image>
         </el-col>
       </el-row>

@@ -45,8 +45,8 @@
         <br>
         <br>
         <el-button type="primary"><router-link to="/Main/recordList" class="buttonStyle">记录列表</router-link></el-button></el-col>
-      <el-col :span="8"><el-image :src="require('@/assets/Group 1.png')"
-                                  style="width: 600px; height: 600px" class="pic"></el-image>
+      <el-col :span="8"><el-image :src="require('@/assets/7.png')"
+                                  style="width: 280px; height: 350px" class="bg_picture"></el-image>
       </el-col>
     </el-row>
   </div>
@@ -129,6 +129,11 @@ body > .el-container {
   text-decoration:none;
   color: white;
   font-size: 20px;
+}
+
+.bg_picture {
+  left: 30%;
+  opacity: 60%;
 }
 
 </style>

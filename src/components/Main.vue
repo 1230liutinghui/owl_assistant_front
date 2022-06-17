@@ -3,16 +3,17 @@
     <el-header>
       <el-row>
         <el-col :span="4">
-          <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px; position: fixed">
+          <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px;">
           </el-image><b class="top_left_text">猫头鹰助理</b>
         </el-col>
-        <el-col :span="4"><br></el-col>
         <el-col :span="4"><br></el-col>
         <el-col :span="4"><br></el-col>
         <el-col :span="4"><br></el-col>
         <el-col :span="4">
           <el-image :src="require('@/assets/8.png')" style="width: 60px; height: 60px; float: right; left: 100px">
           </el-image>
+        </el-col>
+        <el-col :span="4">
           <el-popover
           placement="top-start"
           title="Shawn"

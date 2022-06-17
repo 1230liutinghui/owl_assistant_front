@@ -45,6 +45,8 @@ const IatRecorder = class  {
       this.resultText = ''
       //记录一句话的听写结果
       this.oneWordText = ''
+      //记录每一句话的开始时间
+      this.start_time = new Date()
       transWorker.onmessage = function (event) {
         // console.log("构造方法中",self.audioData)
         self.audioData.push(...event.data)
@@ -88,6 +90,8 @@ const IatRecorder = class  {
           }, 500)
         }
         iatWS.onmessage = e => {
+          let date = new Date()
+          this.start_time = date.toISOString().slice(0, 10) + ' ' + date.toLocaleTimeString()
           this.result(e.data)
         }
         iatWS.onerror = e => {
@@ -290,14 +294,13 @@ const IatRecorder = class  {
       if (jsonData.data && jsonData.data.result) {
         let data = jsonData.data.result
         let str = ''
-        let resultStr = ''
         let ws = data.ws
         for (let i = 0; i < ws.length; i++) {
           str = str + ws[i].cw[0].w
         }
         console.log("识别的结果为：",str)
         this.setOneWordText({
-          oneWordText: str
+          oneWordText: str + '\t' + this.start_time
         })
       }
       if (jsonData.code === 0 && jsonData.data.status === 2) {
