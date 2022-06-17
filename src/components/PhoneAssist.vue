@@ -6,34 +6,85 @@
     </el-breadcrumb>
     <el-row><br></el-row>
     <el-row>
-      <el-col :span="4"><el-button type="primary" @click="translationStart">开始对话</el-button>  <i class="el-icon-microphone"></i></el-col>
-      <el-col :span="4"><el-button type="primary" @click="translationEnd">结束对话</el-button></el-col>
+      <el-col :span="4">
+        <el-button type="primary" @click="translationStart">开始对话</el-button>
+        <i class="el-icon-microphone"></i></el-col>
+      <el-col :span="4">
+        <el-button type="danger" @click="translationEnd">结束对话</el-button>
+      </el-col>
       <el-col :span="4"></el-col>
       <el-col :span="4"></el-col>
       <el-col :span="4"></el-col>
       <el-col :span="4"></el-col>
     </el-row>
     <br>
-    <div>
-      <el-card v-for="(item, index) in list" :key="item">
-        <div v-if="index % 2 ==0" style="text-align: right">{{item}}</div>
-        <div v-else style="text-align: left">
-          <div>{{item}}</div>
-          <div>关键词:</div>
-        </div>
-      </el-card>
+    <div class="communicate_box">
+      <el-scrollbar style="height:100%">
+        <el-card class="box-card">
+          <el-card v-for="(item, index) in list" :key="item">
+            <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
+            <div v-else style="text-align: left">
+              <div>{{ item }}</div>
+              <div>关键词:</div>
+            </div>
+          </el-card>
+        </el-card>
+      </el-scrollbar>
     </div>
+
+    <el-dialog title="表单弹框" :visible.sync="dialogVisible" width="70%" >
+
+      <div class="communicate_box_in_dialog">
+        <el-row :gutter="20">
+          <el-col :span="6">销售人员:</el-col>
+          <el-col :span="6">{{form.sellerName}}</el-col>
+          <el-col :span="6">销售人员工号:</el-col>
+          <el-col :span="6">{{form.workerId}}</el-col>
+        </el-row>
+        <br>
+        <el-row :gutter="20">
+          <el-col :span="6">客户姓名:</el-col>
+          <el-col :span="6">{{form.customerName}}</el-col>
+          <el-col :span="6">客户联系方式</el-col>
+          <el-col :span="6">{{form.phoneNumber}}</el-col>
+        </el-row>
+        <br>
+        <el-scrollbar style="height:100%">
+          <el-card class="box-card">
+            <el-card v-for="(item, index) in list" :key="item">
+              <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
+              <div v-else style="text-align: left">
+                <div>{{ item }}</div>
+                <div>关键词:</div>
+              </div>
+            </el-card>
+          </el-card>
+        </el-scrollbar>
+      </div>
+      <div class="rate">
+        <el-rate
+          v-model="rate"
+          :colors="colors">
+        </el-rate>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
 import IatRecorder from '@/assets/js/IatRecorder.js'
 import axios from "axios";
+
 var text_time = []          //保存每一句话的内容
 var text_list = []          //每一句话的开始时间
 //初始化iatRecorder
 const iatRecorder = new IatRecorder({
-  accent:'mandarin',
+  accent: 'mandarin',
   onTextChange: function (text) {
     let voice = text.split('\t')[0]
     let start_time = text.split('\t')[1]
@@ -63,14 +114,23 @@ const iatRecorder = new IatRecorder({
         }
       })
     }
-}})
+  }
+})
 
 export default {
   name: 'PhoneAssist',
-  data () {
+  data() {
     return {
       list: text_list,
-      time: text_time
+      time: text_time,
+      dialogVisible: false,
+      form: {
+        workerId: '2019',
+        phoneNumber: '18900000000',
+        sellerName: '张三',
+        customerName: '李四',
+      },
+      rate: ''
     }
   },
   methods: {
@@ -81,28 +141,42 @@ export default {
     translationEnd() {
       //结束对话
       iatRecorder.stop()
-    }
+      this.dialogVisible = true
+    },
   },
 }
 </script>
 
 <style>
-.communicate_box{
+.communicate_box {
   overflow: hidden;
   width: auto;
   height: 570px;
   color: #B3C0D1;
   /*margin: 0 auto;*/
 }
-
+.communicate_box_in_dialog{
+  overflow: hidden;
+  width: auto;
+  height: 300px;
+  color: #B3C0D1;
+  /*margin: 0 auto;*/
+}
 /*.scrollMenuBox {*/
 /*  height: 200px;*/
 /*  width: 100px;*/
 /*  border: 1px solid red;*/
 /*}*/
+.rate{
+  text-align:center;
+}
 
 /* 需要在外层套一个div,切记命名特殊一点,防止因缺少scoped，对其他页面会有冲突 */
 .center .el-scrollbar__wrap {
   overflow-x: hidden;
+}
+
+.formItem {
+  display: inline-block;
 }
 </style>

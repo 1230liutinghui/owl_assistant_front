@@ -5,7 +5,7 @@
       <el-breadcrumb-item><a href="/#/Main/recordList">记录列表</a></el-breadcrumb-item>
     </el-breadcrumb>
     <br>
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
       <!--input block-->
       <el-form-item label="销售人员工号" prop="workerId" class="formItem">
         <el-input v-model="ruleForm.workerId"></el-input>
