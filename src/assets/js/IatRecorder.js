@@ -149,19 +149,20 @@ const IatRecorder = class  {
           stream => {
             getMediaSuccess(stream)
           },
-          function(e) {
+          function (e) {
             getMediaFail(e)
           }
         )
-      } else {
-        if (navigator.userAgent.toLowerCase().match(/chrome/) && location.origin.indexOf('https://') < 0) {
-          alert('chrome下获取浏览器录音功能，因为安全性问题，需要在localhost或127.0.0.1或https下才能获取权限')
-        } else {
-          alert('无法获取浏览器录音功能，请升级浏览器或使用chrome')
-        }
-        this.audioContext && this.audioContext.close()
-        return
       }
+      // } else {
+      //   if (navigator.userAgent.toLowerCase().match(/chrome/) < 0) {
+      //     alert('chrome下获取浏览器录音功能，因为安全性问题，需要在localhost或127.0.0.1或https下才能获取权限')
+      //   } else {
+      //     alert('无法获取浏览器录音功能，请升级浏览器或使用chrome')
+      //   }
+      //   this.audioContext && this.audioContext.close()
+      //   return
+      // }
       // 获取浏览器录音权限成功的回调
       let getMediaSuccess = stream => {
         // 创建一个用于通过JavaScript直接处理音频
