@@ -69,7 +69,7 @@ export default {
         cancelButtonText: 'No',
         type: 'warning'
       }).then(() => {
-        this.$http.get('http://localhost:8989/user/logout', {
+        this.$http.get('http://119.29.158.40:8989/user/logout', {
           headers: {
             'token': localStorage.getItem('token')
           }
@@ -100,7 +100,7 @@ export default {
     }
   },
   created () {
-    this.$http.get('http://localhost:8989/authority', {
+    this.$http.get('http://119.29.158.40:8989/authority', {
       headers: {
         'token': localStorage.getItem('token')
       }

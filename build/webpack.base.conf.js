@@ -13,6 +13,7 @@ function resolve (dir) {
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
+  mode: process.env.NODE_ENV,
   entry: {
     app: './src/main.js'
   },
@@ -94,6 +95,17 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commoms: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
   },
   plugins:[
     new vueLoaderPlugin()

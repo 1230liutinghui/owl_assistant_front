@@ -114,7 +114,7 @@ const iatRecorder = new IatRecorder({
     }
     text_list.push(voice)
     if (text_list.length % 2 == 0) {
-      axios.get('http://localhost:8989/recommend?str=' + voice, {
+      axios.get('http://119.29.158.40:8989/recommend?str=' + voice, {
         headers: {
           'token': localStorage.getItem('token')
         }
