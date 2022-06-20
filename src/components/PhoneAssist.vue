@@ -16,9 +16,9 @@
       <el-col :span="4"></el-col>
     </el-row>
     <br>
-    <div class="communicate_box">
-      <el-scrollbar style="height:100%">
-        <el-card class="box-card">
+    <div class="communicate_box" style="padding-right: 2vh;height: 80vh">
+        <el-scrollbar ref="leftScrollbar" style="height:100%">
+        <el-card class="box-card" style="margin-bottom: 20px">
           <el-card v-for="(item, index) in list" :key="item">
             <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
             <div v-else style="text-align: left">
@@ -125,6 +125,7 @@ const iatRecorder = new IatRecorder({
         }
       })
     }
+    this.$refs['leftScrollbar'].wrap.scrollTop = this.$refs['leftScrollbar'].wrap.scrollHeight;//滚动条置底
   }
 })
 
@@ -202,6 +203,8 @@ export default {
 </script>
 
 <style>
+
+
 .communicate_box {
   overflow: hidden;
   width: auto;

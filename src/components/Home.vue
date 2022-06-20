@@ -26,6 +26,7 @@
     </el-row>
     <el-row>
       <el-col :span="16">
+        <div style="padding-left: 5vh;width: 20em">
         <br>
         <br>
         <br>
@@ -37,11 +38,14 @@
         <br>
         <br>
         <br>
-        <el-button type="primary" style="font-weight: 20;font-size: 1vh;"size="small"><router-link to="/Main/phoneAssist" class="buttonStyle">电话辅销</router-link></el-button>
-        <el-button type="primary" style="margin-left: 1.5vh;font-weight: 20;font-size: 1vh;" size="small"><router-link to="/Main/recordList" class="buttonStyle">记录列表</router-link></el-button>
+        <el-button type="primary" style="font-weight: 300;font-size: 1em;"size="small"><router-link to="/Main/phoneAssist" class="buttonStyle">电话辅销</router-link></el-button>
+        <el-button type="primary" style="margin-left: 1em;font-weight: 300;font-size: 1em;" size="small"><router-link to="/Main/recordList" class="buttonStyle">记录列表</router-link></el-button>
+        </div>
       </el-col>
-      <el-col :span="8"><el-image :src="require('@/assets/7.png')"
-                                  style="width: 31.9vh" class="bg_picture"></el-image>
+      <el-col :span="8">
+        <div style="overflow: hidden;" >
+          <el-image :src="require('@/assets/7.png')" style="width: 22em" class="bg_picture"></el-image>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -65,14 +69,16 @@ export default {
   background: linear-gradient(to right, #0e2cf0, #1a88e8, #4abaff);
   -webkit-background-clip: text;
   color: transparent;
-  font-size: 6.5vh;
+  font-size: 4em;
+  font-weight: 500;
 }
 
 .style2{
   background: linear-gradient(to right, #000000, #000000, #000000);
   -webkit-background-clip: text;
   color: transparent;
-  font-size: 2vh;
+  font-weight: 450;
+  font-size: 1.2em;
 }
 
 .pic{

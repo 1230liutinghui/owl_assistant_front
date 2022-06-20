@@ -5,24 +5,28 @@
       <el-breadcrumb-item><a href="/#/Main/recordList">记录列表</a></el-breadcrumb-item>
     </el-breadcrumb>
     <br>
-    <el-form :model="ruleForm" ref="ruleForm" label-width="100px">
+    <br>
+    <el-form :model="ruleForm" ref="ruleForm" label-width="7.2em">
+      <div style="padding-right: 2vh;display:inline">
       <!--input block-->
+      <div style="display:inline">
       <el-form-item label="客户联络方式" prop="phoneNumber" class="formItem">
-        <el-input v-model="ruleForm.phoneNumber"></el-input>
+        <el-input v-model="ruleForm.phoneNumber" style="width: 15em"></el-input>
       </el-form-item>
       <el-form-item label="对话记录ID" prop="recordId" class="formItem">
-        <el-input v-model="ruleForm.workerId"></el-input>
+        <el-input v-model="ruleForm.workerId" style="width: 15em"></el-input>
       </el-form-item>
-      <el-form-item label="" prop="recordId" class="formItem">
-      </el-form-item>
-      <el-form-item label="" prop="recordId" class="formItem">
-      </el-form-item>
+      </div>
       <!--button-->
+      <div style="display:inline;float:right;padding-right: 2vh">
       <el-form-item class="formItem" >
         <el-button type="primary" @click="submitForm('ruleForm')">查询</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
-
+      </div>
+      </div>
+      <div style="padding-right: 2vh">
+      <br>
       <!--display table-->
       <el-table :data="search == '' ? tableData : totalData.filter(data => !search || data.index.toLowerCase().includes(search.toLowerCase()))"
                 style="width: 100%">
@@ -37,6 +41,7 @@
         <el-table-column
           label="评分" prop="score"></el-table-column>
       </el-table>
+      </div>
     </el-form>
   </div>
 </template>

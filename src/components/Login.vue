@@ -2,24 +2,27 @@
   <el-container>
     <el-header>
       <el-col :span="4">
-        <el-image :src="require('@/assets/Group 1.png')" style="width: 2vh; height: 2vh;top: 1vh;left: 0.5vh">
-        </el-image><b class="top_left_text" style="margin-top:0.6vh;left: 4vh">猫头鹰助理</b>
+        <div style="text-align: left">
+          <el-image :src="require('@/assets/Group 1.png')" style="height: 1.2em;top: 0.6em;left: 0.3em"></el-image>
+        </div>
+        <div style="text-align: center">
+          <b class="top_left_text" style="top: 0.4em;left: 3.2em;margin: 0">猫头鹰助理</b>
+        </div>
       </el-col>
     </el-header>
-    <el-main style="line-height: 30vh;">
+    <el-main style="line-height: 30vh;padding-right: 0;">
       <el-row>
         <el-col :span="10">
           <div class="grid-content bg-white"></div>
         </el-col>
         <el-col :span="4" style="margin-top: 80px">
-          <div>
+          <div style="margin-top: 3em">
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
               <el-form-item>
                 <br>
                 <el-row style="text-align: center">
                   <b style="font-size: 32px; margin-bottom: 0"> 登录 </b>
                 </el-row>
-                <br>
               </el-form-item>
               <el-form-item label="工号" prop="userName" style="font-weight: 600;">
                 <el-input style="width: 100%" placeholder="请输入内容" v-model="ruleForm.userName"
@@ -30,8 +33,7 @@
                           autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item>
-                <br>
-                <el-row style="text-align: center">
+                <el-row style="text-align: center;margin-top: 2em;">
                   <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                 </el-row>
               </el-form-item>
@@ -43,8 +45,15 @@
             </el-form>
           </div>
         </el-col>
-        <el-col :span="10"><el-image :src="require('@/assets/7.png')"
-                                    style="margin-top:10vh;width: 36.5vh" class="bg_picture"></el-image>
+        <el-col :span="3">
+          <div style="width:100%;overflow: hidden;" >
+            <el-image :src="require('@/assets/7.png')" style="margin-top:6em;width: 3em;opacity: 0%;" class="bg_picture"></el-image>
+          </div>
+        </el-col>
+        <el-col :span="7">
+          <div style="width:100%;height:100%;overflow: hidden;" >
+            <el-image :src="require('@/assets/7.png')" style="margin-top:6em;width: 22em" class="bg_picture"></el-image>
+          </div>
         </el-col>
       </el-row>
     </el-main>
@@ -132,12 +141,13 @@ export default {
 .el-header, .el-footer {
   background-color: #FFFFFF;
   color: #333;
-  line-height: 5vh;
+  line-height: 3em;
   border-bottom:1px solid #D3DCE6
 }
 
-.el-row {
-  margin-bottom: 0px;
+.top_left_text{
+  position: absolute;
+  left: 80px;
 }
 
 .bg-white {

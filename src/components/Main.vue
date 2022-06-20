@@ -3,14 +3,15 @@
     <el-header>
       <el-row>
         <el-col :span="4">
-          <el-image :src="require('@/assets/Group 1.png')" style="width: 2vh; height: 2vh;top: 1vh;left: 0.5vh">
-          </el-image><b class="top_left_text" style="top: 0.6vh;left: 3vh">猫头鹰助理</b>
+          <div style="text-align: left">
+          <el-image :src="require('@/assets/Group 1.png')" style="height: 1.2em;top: 0.6em;left: 0.3em"></el-image>
+          </div>
+          <div style="text-align: center">
+          <b class="top_left_text" style="top: 0.4em;left: 1.8em">猫头鹰助理</b>
+          </div>
         </el-col>
-        <el-col :span="4"><br></el-col>
-        <el-col :span="4"><br></el-col>
-        <el-col :span="4"><br></el-col>
-        <el-col :span="4">
-          <el-popover
+        <el-col :span="16"><br></el-col>
+        <el-popover
             placement="top-start"
             title="Shawn"
             width="200"
@@ -21,17 +22,17 @@
             </div>
             <br>
             <el-button type="danger" @click="LogOutNotification">Log out</el-button>
-            <el-button slot="reference" style="margin-top: 1.5vh;margin-right: 2vh" size="small">Shawn</el-button>
+            <el-button slot="reference" style="margin-top: 1.2em;margin-right: 1.8em" size="small">Shawn</el-button>
           </el-popover>
-        </el-col>
         <el-col :span="4">
-          <el-image :src="require('@/assets/8.png')" style="width: 4vh; height: 4vh; float: right;top: 1vh;left:25.5vh">
-          </el-image>
+          <div style="text-align: right">
+          <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+          </div>
         </el-col>
       </el-row>
     </el-header>
     <el-container>
-      <el-aside width="20vh">
+      <el-aside width="15em">
         <el-menu
           default-active="activeIndex"
           class="el-menu-vertical-demo"
@@ -128,7 +129,7 @@ export default {
 .el-header, .el-footer {
   background-color: #FFFFFF;
   color: #333;
-  line-height: 5vh;
+  line-height: 3em;
   border-bottom:1px solid #D3DCE6
 }
 
@@ -142,7 +143,8 @@ export default {
   background-color: #FFFFFF;
   color: #333;
   height: 94vh;
-  border-left:1px solid #D3DCE6
+  border-left:1px solid #D3DCE6;
+  padding-right: 0;
 }
 
 body > .el-container {
