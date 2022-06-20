@@ -14,6 +14,9 @@
         <el-input v-model="ruleForm.workerId"></el-input>
       </el-form-item>
       <el-form-item label="" prop="recordId" class="formItem">
+      </el-form-item>
+      <el-form-item label="" prop="recordId" class="formItem">
+      </el-form-item>
       <!--button-->
       <el-form-item class="formItem" >
         <el-button type="primary" @click="submitForm('ruleForm')">查询</el-button>

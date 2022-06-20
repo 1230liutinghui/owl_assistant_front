@@ -13,7 +13,7 @@ import 'lemon-imui/dist/index.css'
 Vue.use(LemonIMUI)
 Vue.use(ElementUI)
 
-axios.defaults.baseURL = 'http://localhost:8989';  // 默认地址
+axios.defaults.baseURL = 'http://119.91.99.211:8989';  // 默认地址
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
