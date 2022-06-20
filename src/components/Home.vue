@@ -25,28 +25,23 @@
       <br>
     </el-row>
     <el-row>
-      <el-col :span="8">
+      <el-col :span="16">
+        <br>
+        <br>
+        <br>
         <br>
         <br><b class="style1">猫头鹰助理</b>
         <br>
-        <br>xxxxxx
-        <br>xxxxxx
-        <br>xxxxxx
-        <br>
-        <br>
-        <el-button type="primary"><router-link to="/Main/phoneAssist" class="buttonStyle">电话辅销</router-link></el-button></el-col>
-      <el-col :span="8">
+        <br><b class="style2">智能电话销售与邀约辅助问答系统</b>
         <br>
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <el-button type="primary"><router-link to="/Main/recordList" class="buttonStyle">记录列表</router-link></el-button></el-col>
+        <el-button type="primary" style="font-weight: 20;font-size: 1vh;"size="small"><router-link to="/Main/phoneAssist" class="buttonStyle">电话辅销</router-link></el-button>
+        <el-button type="primary" style="margin-left: 1.5vh;font-weight: 20;font-size: 1vh;" size="small"><router-link to="/Main/recordList" class="buttonStyle">记录列表</router-link></el-button>
+      </el-col>
       <el-col :span="8"><el-image :src="require('@/assets/7.png')"
-                                  style="width: 280px; height: 350px" class="bg_picture"></el-image>
+                                  style="width: 31.9vh" class="bg_picture"></el-image>
       </el-col>
     </el-row>
   </div>
@@ -70,6 +65,14 @@ export default {
   background: linear-gradient(to right, #0e2cf0, #1a88e8, #4abaff);
   -webkit-background-clip: text;
   color: transparent;
+  font-size: 6.5vh;
+}
+
+.style2{
+  background: linear-gradient(to right, #000000, #000000, #000000);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 2vh;
 }
 
 .pic{
@@ -81,7 +84,7 @@ export default {
 .el-header, .el-footer {
   background-color: #B3C0D1;
   color: #333;
-  line-height: 60px;
+  line-height: 40px;
 }
 
 .el-aside {

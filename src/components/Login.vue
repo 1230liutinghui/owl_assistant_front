@@ -1,48 +1,50 @@
 <template>
   <el-container>
-    <el-header style="line-height: 45px; height: 45px;">
-      <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px;"> </el-image>
-      <b class="top_left_text">猫头鹰助理</b>
+    <el-header>
+      <el-col :span="4">
+        <el-image :src="require('@/assets/Group 1.png')" style="width: 2vh; height: 2vh;top: 1vh;left: 0.5vh">
+        </el-image><b class="top_left_text" style="margin-top:0.6vh;left: 4vh">猫头鹰助理</b>
+      </el-col>
     </el-header>
-    <el-divider class="el-divider--horizontal"></el-divider>
-    <el-main style="line-height: 400px;">
+    <el-main style="line-height: 30vh;">
       <el-row>
-        <el-col :span="8">
+        <el-col :span="10">
           <div class="grid-content bg-white"></div>
         </el-col>
-        <el-col :span="8" style="margin-top: 80px">
+        <el-col :span="4" style="margin-top: 80px">
           <div>
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
               <el-form-item>
+                <br>
                 <el-row style="text-align: center">
                   <b style="font-size: 32px; margin-bottom: 0"> 登录 </b>
                 </el-row>
+                <br>
               </el-form-item>
-              <el-form-item label="工号" prop="userName">
-                <el-input style="width: 400px" placeholder="请输入内容" v-model="ruleForm.userName"
+              <el-form-item label="工号" prop="userName" style="font-weight: 600;">
+                <el-input style="width: 100%" placeholder="请输入内容" v-model="ruleForm.userName"
                           autocomplete="off"></el-input>
               </el-form-item>
-              <el-form-item label="密码" prop="password">
-                <el-input style="width: 400px" placeholder="请输入内容" type="password" v-model="ruleForm.password"
+              <el-form-item label="密码" prop="password" style="font-weight: 600;">
+                <el-input style="width: 100%" placeholder="请输入内容" type="password" v-model="ruleForm.password"
                           autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item>
+                <br>
                 <el-row style="text-align: center">
                   <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                 </el-row>
               </el-form-item>
               <el-form-item>
                 <el-row style="text-align: center">
-                  <router-link to="/OA">OA登录</router-link>
+                  <router-link to="/OA" style="text-decoration: none;color: dodgerblue">OA登录</router-link>
                 </el-row>
               </el-form-item>
             </el-form>
           </div>
         </el-col>
-        <el-col :span="8">
-          <el-image :src="require('@/assets/7.png')"
-                    style="width: 280px; height: 350px" class="bg_picture">
-          </el-image>
+        <el-col :span="10"><el-image :src="require('@/assets/7.png')"
+                                    style="margin-top:10vh;width: 36.5vh" class="bg_picture"></el-image>
         </el-col>
       </el-row>
     </el-main>
@@ -117,16 +119,25 @@ export default {
 </script>
 
 <style scoped>
+
+.router-link-active {
+  text-decoration: none;
+  color: blue;
+}
+
+.el-form-item__label {
+  font-weight: 200;
+}
+
+.el-header, .el-footer {
+  background-color: #FFFFFF;
+  color: #333;
+  line-height: 5vh;
+  border-bottom:1px solid #D3DCE6
+}
+
 .el-row {
-  margin-bottom: 20px;
-}
-
-.el-col.last-child {
-  margin-bottom: 0;
-}
-
-.el-col {
-  border-radius: 4px;
+  margin-bottom: 0px;
 }
 
 .bg-white {

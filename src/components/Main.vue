@@ -3,16 +3,12 @@
     <el-header>
       <el-row>
         <el-col :span="4">
-          <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px;">
-          </el-image><b class="top_left_text">猫头鹰助理</b>
+          <el-image :src="require('@/assets/Group 1.png')" style="width: 2vh; height: 2vh;top: 1vh;left: 0.5vh">
+          </el-image><b class="top_left_text" style="top: 0.6vh;left: 3vh">猫头鹰助理</b>
         </el-col>
         <el-col :span="4"><br></el-col>
         <el-col :span="4"><br></el-col>
         <el-col :span="4"><br></el-col>
-        <el-col :span="4">
-          <el-image :src="require('@/assets/8.png')" style="width: 60px; height: 60px; float: right; left: 100px">
-          </el-image>
-        </el-col>
         <el-col :span="4">
           <el-popover
             placement="top-start"
@@ -25,13 +21,17 @@
             </div>
             <br>
             <el-button type="danger" @click="LogOutNotification">Log out</el-button>
-            <el-button slot="reference" style="vertical-align: middle">Shawn</el-button>
+            <el-button slot="reference" style="margin-top: 1.5vh;margin-right: 2vh" size="small">Shawn</el-button>
           </el-popover>
+        </el-col>
+        <el-col :span="4">
+          <el-image :src="require('@/assets/8.png')" style="width: 4vh; height: 4vh; float: right;top: 1vh;left:25.5vh">
+          </el-image>
         </el-col>
       </el-row>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="20vh">
         <el-menu
           default-active="activeIndex"
           class="el-menu-vertical-demo"
@@ -117,22 +117,32 @@ export default {
 <style scoped>
 /*.el-container{height:100%;padding:0;margin:0;width:100%;}*/
 
+.el-menu {
+  border-right: 0;
+  border-bottom: 1px;
+  font-size: 12px;
+}
+.el-menu-item{
+  font-size: 12px;
+}
 .el-header, .el-footer {
-  background-color: #B3C0D1;
+  background-color: #FFFFFF;
   color: #333;
-  line-height: 60px;
+  line-height: 5vh;
+  border-bottom:1px solid #D3DCE6
 }
 
 .el-aside {
-  background-color: #D3DCE6;
+  background-color: #FFFFFF;
   color: #333;
-  line-height: 800px;
+  line-height: 94vh;
 }
 
 .el-main {
-  background-color: #E9EEF3;
+  background-color: #FFFFFF;
   color: #333;
-  height: 700px;
+  height: 94vh;
+  border-left:1px solid #D3DCE6
 }
 
 body > .el-container {

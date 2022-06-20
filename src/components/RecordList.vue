@@ -7,14 +7,15 @@
     <br>
     <el-form :model="ruleForm" ref="ruleForm" label-width="100px">
       <!--input block-->
-      <el-form-item label="记录ID" prop="recordId" class="formItem">
-        <el-input v-model="ruleForm.id"></el-input>
-      </el-form-item>
       <el-form-item label="客户联络方式" prop="phoneNumber" class="formItem">
-        <el-input v-model="ruleForm.phone"></el-input>
+        <el-input v-model="ruleForm.phoneNumber"></el-input>
       </el-form-item>
+      <el-form-item label="对话记录ID" prop="recordId" class="formItem">
+        <el-input v-model="ruleForm.workerId"></el-input>
+      </el-form-item>
+      <el-form-item label="" prop="recordId" class="formItem">
       <!--button-->
-      <el-form-item class="formItem">
+      <el-form-item class="formItem" >
         <el-button type="primary" @click="submitForm('ruleForm')">查询</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>

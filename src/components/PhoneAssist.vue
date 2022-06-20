@@ -6,11 +6,9 @@
     </el-breadcrumb>
     <el-row><br></el-row>
     <el-row>
-      <el-col :span="4">
-        <el-button type="primary" @click="translationStart">开始对话</el-button>
-        <i class="el-icon-microphone"></i></el-col>
-      <el-col :span="4">
-        <el-button type="danger" @click="translationEnd">结束对话</el-button>
+      <el-col :span="16">
+        <el-button type="primary" @click="translationStart" :loading="ConfirmLoading">{{loadingbuttext}}</el-button>
+        <el-button type="danger" @click="translationEnd" style="" v-if="showclose">结束对话</el-button>
       </el-col>
       <el-col :span="4"></el-col>
       <el-col :span="4"></el-col>
@@ -73,8 +71,7 @@
         </el-rate>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submit">确 定</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -138,6 +135,9 @@ export default {
       list: text_list,
       time: text_time,
       dialogVisible: false,
+      ConfirmLoading: false,
+      loadingbuttext:'开始对话',
+      showclose: false,
       form: {
         job_id: 2019,
         phone: '18900000000',
@@ -154,6 +154,9 @@ export default {
     translationStart() {
       //启动语音识别
       iatRecorder.start()
+      this.ConfirmLoading = true
+      this.loadingbuttext = '对话中'
+      this.showclose = true
       let start_date = new Date()
       this.form.start_time = start_date.toISOString().slice(0, 10) + ' ' + start_date.toLocaleTimeString()
     },
@@ -161,6 +164,9 @@ export default {
       //结束对话
       iatRecorder.stop()
       this.dialogVisible = true
+      this.ConfirmLoading = false
+      this.loadingbuttext = '开始对话'
+      this.showclose = false
       let end_date = new Date()
       this.form.end_time = end_date.toISOString().slice(0, 10) + ' ' + end_date.toLocaleTimeString()
       for (let i = 0; i < text_time.length; i++) {
