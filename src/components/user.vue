@@ -155,7 +155,7 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.post('http://119.29.158.40:8989/user/save', this.form).then(res => {
+          this.$http.post('/user/save', this.form).then(res => {
             if (res.data.status) {
               this.$message({
                 message: res.data.message,
@@ -176,14 +176,14 @@ export default {
     getTableData (page, size) {
       page = page == null ? 1 : this.currentPage
       size = size == null ? 5 : this.pageSize
-      this.$http.get('http://119.29.158.40:8989/user/findByPage?pageCurrent=' + page + '&rows=' + size).then(res => {
+      this.$http.get('/user/findByPage?pageCurrent=' + page + '&rows=' + size).then(res => {
         this.tableData = res.data.userList
         this.total = res.data.total
       })
     }
   },
   created () {
-    this.$http.get('http://119.29.158.40:8989/user/findAll').then(res => {
+    this.$http.get('/user/findAll').then(res => {
       this.totalData = res.data
     })
     this.getTableData()

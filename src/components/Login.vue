@@ -91,7 +91,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 向后端请求用户认证
-          this.$http.post('http://119.29.158.40:8989/user/login', this.ruleForm).then(res => {
+          this.$http.post('/user/login', this.ruleForm).then(res => {
             // console.log(res.data)
             if (res.data.code === 200) {
               // alert(res.data.msg)

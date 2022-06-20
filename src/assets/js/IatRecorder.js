@@ -303,6 +303,7 @@ const IatRecorder = class  {
         this.setOneWordText({
           oneWordText: str + '\t' + this.start_time
         })
+        console.log(this.oneWordText)
       }
       if (jsonData.code === 0 && jsonData.data.status === 2) {
         this.webSocket.close()

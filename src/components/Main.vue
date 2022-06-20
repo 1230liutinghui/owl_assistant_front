@@ -15,11 +15,11 @@
         </el-col>
         <el-col :span="4">
           <el-popover
-          placement="top-start"
-          title="Shawn"
-          width="200"
-          trigger="hover"
-          class="right">
+            placement="top-start"
+            title="Shawn"
+            width="200"
+            trigger="hover"
+            class="right">
             <div>
               this is Shawn
             </div>
@@ -69,7 +69,7 @@ export default {
         cancelButtonText: 'No',
         type: 'warning'
       }).then(() => {
-        this.$http.get('http://119.29.158.40:8989/user/logout', {
+        this.$http.get('/user/logout', {
           headers: {
             'token': localStorage.getItem('token')
           }
@@ -100,7 +100,7 @@ export default {
     }
   },
   created () {
-    this.$http.get('http://119.29.158.40:8989/authority', {
+    this.$http.get('/authority', {
       headers: {
         'token': localStorage.getItem('token')
       }
@@ -132,7 +132,7 @@ export default {
 .el-main {
   background-color: #E9EEF3;
   color: #333;
-  height: 800px;
+  height: 700px;
 }
 
 body > .el-container {
