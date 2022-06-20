@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
-import User from '../components/user'
 import PhoneAssist from '../components/PhoneAssist'
 import RecordList from '../components/RecordList'
 import Login from '../components/Login'
@@ -16,10 +15,6 @@ export default new Router({
   routes: [{
     path: '/',
     redirect: '/login'
-  }, {
-    path: '/user',
-    name: 'user',
-    component: User
   }, {
     path: '/login',
     name: 'login',

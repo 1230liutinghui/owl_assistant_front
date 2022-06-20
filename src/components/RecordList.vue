@@ -5,16 +5,13 @@
       <el-breadcrumb-item><a href="/#/Main/recordList">记录列表</a></el-breadcrumb-item>
     </el-breadcrumb>
     <br>
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
+    <el-form :model="ruleForm" ref="ruleForm" label-width="100px">
       <!--input block-->
-      <el-form-item label="销售人员工号" prop="workerId" class="formItem">
-        <el-input v-model="ruleForm.workerId"></el-input>
-      </el-form-item>
       <el-form-item label="记录ID" prop="recordId" class="formItem">
-        <el-input v-model="ruleForm.recordId"></el-input>
+        <el-input v-model="ruleForm.id"></el-input>
       </el-form-item>
       <el-form-item label="客户联络方式" prop="phoneNumber" class="formItem">
-        <el-input v-model="ruleForm.phoneNumber"></el-input>
+        <el-input v-model="ruleForm.phone"></el-input>
       </el-form-item>
       <!--button-->
       <el-form-item class="formItem">
@@ -26,17 +23,15 @@
       <el-table :data="search == '' ? tableData : totalData.filter(data => !search || data.index.toLowerCase().includes(search.toLowerCase()))"
                 style="width: 100%">
         <el-table-column
-          label="序号" prop="index"></el-table-column>
+          label="记录ID" prop="id"></el-table-column>
         <el-table-column
-          label="记录ID" prop="recordId"></el-table-column>
+          label="客户联络方式" prop="phone"></el-table-column>
         <el-table-column
-          label="客户联络方式" prop="phoneNumber"></el-table-column>
+          label="开始时间" prop="start_time"></el-table-column>
         <el-table-column
-          label="销售人员工号" prop="workerId"></el-table-column>
+          label="结束时间" prop="end_time"></el-table-column>
         <el-table-column
-          label="开始时间" prop="startTime"></el-table-column>
-        <el-table-column
-          label="结束时间" prop="endTime"></el-table-column>
+          label="评分" prop="score"></el-table-column>
       </el-table>
     </el-form>
   </div>
@@ -47,56 +42,38 @@ export default {
   name: 'RecordList',
   data () {
     return {
+      job_id: 0,
       tableData: [
         {
-          index: ' ',
-          recordId: ' ',
-          phoneNumber: ' ',
-          workerId: ' ',
-          startTime: ' ',
-          endTime: '2022-6-24'
+          id: 0,
+          phone: '',
+          start_time: '',
+          end_time: '',
+          score: 0
         }
       ],
       totalData: [],
       ruleForm: {
-        phoneNumber: '',
-        recordId: '',
-        workerId: ''
+        phone: '',
+        id: 0
       },
       search: ''
-      // rules: {
-      //   name: [
-      //     { required: true, message: '请输入活动名称', trigger: 'blur' },
-      //     { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-      //   ],
-      //   region: [
-      //     { required: true, message: '请选择活动区域', trigger: 'change' }
-      //   ],
-      //   date1: [
-      //     { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-      //   ],
-      //   date2: [
-      //     { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-      //   ],
-      //   type: [
-      //     { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-      //   ],
-      //   resource: [
-      //     { required: true, message: '请选择活动资源', trigger: 'change' }
-      //   ],
-      //   desc: [
-      //     { required: true, message: '请填写活动形式', trigger: 'blur' }
-      //   ]
-      // }
     }
   },
+  created() {
+    //从本地获取用户工号
+    this.job_id = localStorage.getItem("userName")
+    //向后端请求当前用户的通话记录
+    this.$http.get('/record/queryByUserId?job_id=' + this.job_id, {
+      headers: {
+        'token': localStorage.getItem('token')
+      }
+    }).then(res => {
+      this.tableData = res.data
+      this.totalData = res.data
+    })
+  },
   methods: {
-    handleEdit (index, row) {
-      console.log(index, row)
-    },
-    handleDelete (index, row) {
-      console.log(index, row)
-    },
     handleSearch () {
       this.total = this.totalData.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase())).length
     },
@@ -107,9 +84,6 @@ export default {
     handleCurrentChange (val) {
       this.currentPage = val
       this.getTableData(val, this.pageSize)
-    },
-    showDialog () {
-      this.dialogFormVisible = true
     },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {

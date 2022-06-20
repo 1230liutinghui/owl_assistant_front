@@ -112,7 +112,7 @@ const iatRecorder = new IatRecorder({
         voice = voice.substring(1, voice.length)
       }
     }
-    if (voice == undefined)
+    if (voice == undefined || voice =='')
       return
     text_list.push(voice)
     if (text_list.length % 2 == 0) {
@@ -122,7 +122,9 @@ const iatRecorder = new IatRecorder({
         }
       }).then(res => {
         if (res.data.code === 200) {
-          console.log(res.data.data);
+          console.log(res.data.data)
+          keyword.push(res.data.data.key_word)
+          content.push(res.data.data.content)
         }
       })
     }
@@ -144,30 +146,8 @@ export default {
         end_time: '',
         content: ''
       },
-      keywords: [
-        [
-          "关键字1_1",
-          "关键字2_1",
-          "关键字3_1",
-        ],
-        [
-          "关键字1_2",
-          "关键字2_2",
-          "关键字3_2",
-        ]
-      ],
-      contents: [
-        [
-          "内容1_1",
-          "内容2_1",
-          "内容3_1",
-        ],
-        [
-          "内容1_2",
-          "内容2_2",
-          "内容3_2",
-        ]
-      ]
+      keywords: keyword,
+      contents: content
     }
   },
   methods: {
@@ -184,7 +164,13 @@ export default {
       let end_date = new Date()
       this.form.end_time = end_date.toISOString().slice(0, 10) + ' ' + end_date.toLocaleTimeString()
       for (let i = 0; i < text_time.length; i++) {
+        //将每一句话的内容和开始时间存入数据库
         this.form.content += text_list[i] + '\t' + text_time[i] + '\n'
+        if (i % 2 !== 0) {
+          for (let j = 0; j < 3; j++) {
+            this.form.content += this.keywords[(i-1)/2][j] + ':\t' + this.contents[(i-1)/2][j] + '\n'
+          }
+        }
       }
     },
     submit() {
