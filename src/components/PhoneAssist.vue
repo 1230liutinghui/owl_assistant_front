@@ -25,7 +25,10 @@
             <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
             <div v-else style="text-align: left">
               <div>{{ item }}</div>
-              <div>关键词:</div>
+              <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                {{key}}
+                {{contents[(index-1)/2][index_3]}}
+              </div>
             </div>
           </el-card>
         </el-card>
@@ -36,17 +39,17 @@
 
       <div class="communicate_box_in_dialog">
         <el-row :gutter="20">
-          <el-col :span="6">销售人员:</el-col>
-          <el-col :span="6">{{form.sellerName}}</el-col>
           <el-col :span="6">销售人员工号:</el-col>
-          <el-col :span="6">{{form.workerId}}</el-col>
+          <el-col :span="6">{{form.job_id}}</el-col>
+          <el-col :span="6">客户联系方式</el-col>
+          <el-col :span="6">{{form.phone}}</el-col>
         </el-row>
         <br>
         <el-row :gutter="20">
-          <el-col :span="6">客户姓名:</el-col>
-          <el-col :span="6">{{form.customerName}}</el-col>
-          <el-col :span="6">客户联系方式</el-col>
-          <el-col :span="6">{{form.phoneNumber}}</el-col>
+          <el-col :span="6">开始时间:</el-col>
+          <el-col :span="6">{{form.start_time}}</el-col>
+          <el-col :span="6">结束时间:</el-col>
+          <el-col :span="6">{{form.end_time}}</el-col>
         </el-row>
         <br>
         <el-scrollbar style="height:100%">
@@ -55,7 +58,10 @@
               <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
               <div v-else style="text-align: left">
                 <div>{{ item }}</div>
-                <div>关键词:</div>
+                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                  {{key}}
+                  {{contents[(index-1)/2][index_3]}}
+                </div>
               </div>
             </el-card>
           </el-card>
@@ -63,13 +69,12 @@
       </div>
       <div class="rate">
         <el-rate
-          v-model="rate"
-          :colors="colors">
+          v-model="form.score">
         </el-rate>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="submit">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -82,12 +87,17 @@ import axios from "axios";
 
 var text_time = []          //保存每一句话的内容
 var text_list = []          //每一句话的开始时间
+
+var keyword = []            //关键字
+var content = []               //提示内容
 //初始化iatRecorder
 const iatRecorder = new IatRecorder({
   accent: 'mandarin',
   onTextChange: function (text) {
     let voice = text.split('\t')[0]
     let start_time = text.split('\t')[1]
+    if (start_time == undefined)
+      return
     text_time.push(start_time)
     if (voice == '')
       return
@@ -102,9 +112,11 @@ const iatRecorder = new IatRecorder({
         voice = voice.substring(1, voice.length)
       }
     }
+    if (voice == undefined)
+      return
     text_list.push(voice)
     if (text_list.length % 2 == 0) {
-      axios.get('http://119.29.158.40:8989/recommend?str=' + voice, {
+      axios.get('/recommend?str=' + voice, {
         headers: {
           'token': localStorage.getItem('token')
         }
@@ -125,24 +137,74 @@ export default {
       time: text_time,
       dialogVisible: false,
       form: {
-        workerId: '2019',
-        phoneNumber: '18900000000',
-        sellerName: '张三',
-        customerName: '李四',
+        job_id: 2019,
+        phone: '18900000000',
+        score: 0,
+        start_time: '',
+        end_time: '',
+        content: ''
       },
-      rate: ''
+      keywords: [
+        [
+          "关键字1_1",
+          "关键字2_1",
+          "关键字3_1",
+        ],
+        [
+          "关键字1_2",
+          "关键字2_2",
+          "关键字3_2",
+        ]
+      ],
+      contents: [
+        [
+          "内容1_1",
+          "内容2_1",
+          "内容3_1",
+        ],
+        [
+          "内容1_2",
+          "内容2_2",
+          "内容3_2",
+        ]
+      ]
     }
   },
   methods: {
     translationStart() {
       //启动语音识别
       iatRecorder.start()
+      let start_date = new Date()
+      this.form.start_time = start_date.toISOString().slice(0, 10) + ' ' + start_date.toLocaleTimeString()
     },
     translationEnd() {
       //结束对话
       iatRecorder.stop()
       this.dialogVisible = true
+      let end_date = new Date()
+      this.form.end_time = end_date.toISOString().slice(0, 10) + ' ' + end_date.toLocaleTimeString()
+      for (let i = 0; i < text_time.length; i++) {
+        this.form.content += text_list[i] + '\t' + text_time[i] + '\n'
+      }
     },
+    submit() {
+      this.dialogVisible = false
+      this.$http.post('/record/addRecord', this.form,{
+        headers: {
+          'token': localStorage.getItem('token')
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.data.code === 200) {
+          this.$message({
+            message: res.data.msg,
+            type: 'success'
+          })
+        }else {
+          this.$message.error(res.data.msg)
+        }
+      })
+    }
   },
 }
 </script>
