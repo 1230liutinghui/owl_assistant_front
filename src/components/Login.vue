@@ -51,8 +51,8 @@
           </div>
         </el-col>
         <el-col :span="7">
-          <div style="width:100%;height:100%;overflow: hidden;" >
-            <el-image :src="require('@/assets/7.png')" style="margin-top:6em;width: 22em" class="bg_picture"></el-image>
+          <div style="text-align:right;width:100%;height:100%;overflow: hidden;" >
+            <el-image :src="require('@/assets/7.png')" style="margin-top:6em;width: 22em;;opacity: 70%;"></el-image>
           </div>
         </el-col>
       </el-row>
@@ -168,10 +168,6 @@ export default {
   background-color: #f9fafc;
 }
 
-.bg_picture {
-  left: 30%;
-  opacity: 60%;
-}
 
 .el-divider--horizontal {
   display: block;

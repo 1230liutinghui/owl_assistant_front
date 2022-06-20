@@ -43,8 +43,8 @@
         </div>
       </el-col>
       <el-col :span="8">
-        <div style="overflow: hidden;" >
-          <el-image :src="require('@/assets/7.png')" style="width: 22em" class="bg_picture"></el-image>
+        <div style="width:100%;text-align:right;overflow: hidden;" >
+          <el-image :src="require('@/assets/7.png')" style="width: 22em;opacity: 70%;"></el-image>
         </div>
       </el-col>
     </el-row>
