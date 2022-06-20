@@ -25,7 +25,10 @@
             <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
             <div v-else style="text-align: left">
               <div>{{ item }}</div>
-              <div>关键词:</div>
+              <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                {{key}}
+                {{contents[(index-1)/2][index_3]}}
+              </div>
             </div>
           </el-card>
         </el-card>
@@ -55,7 +58,10 @@
               <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
               <div v-else style="text-align: left">
                 <div>{{ item }}</div>
-                <div>关键词:</div>
+                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                  {{key}}
+                  {{contents[(index-1)/2][index_3]}}
+                </div>
               </div>
             </el-card>
           </el-card>
@@ -82,6 +88,10 @@ import axios from "axios";
 
 var text_time = []          //保存每一句话的内容
 var text_list = []          //每一句话的开始时间
+
+var keyword = []            //关键字
+var content = []               //提示内容
+
 //初始化iatRecorder
 const iatRecorder = new IatRecorder({
   accent: 'mandarin',
@@ -130,7 +140,32 @@ export default {
         sellerName: '张三',
         customerName: '李四',
       },
-      rate: ''
+      rate: '',
+
+      keywords: [
+        [
+          "关键字1_1",
+          "关键字2_1",
+          "关键字3_1",
+        ],
+        [
+          "关键字1_2",
+          "关键字2_2",
+          "关键字3_2",
+        ]
+     ],
+      contents: [
+        [
+          "内容1_1",
+          "内容2_1",
+          "内容3_1",
+        ],
+        [
+          "内容1_2",
+          "内容2_2",
+          "内容3_2",
+        ]
+      ],
     }
   },
   methods: {

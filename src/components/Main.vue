@@ -132,7 +132,7 @@ export default {
 .el-main {
   background-color: #E9EEF3;
   color: #333;
-  height: 800px;
+  height: 700px;
 }
 
 body > .el-container {
