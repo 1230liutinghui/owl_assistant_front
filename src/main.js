@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 
-axios.defaults.baseURL = 'http://localhost:8989';  // 默认地址
+axios.defaults.baseURL = 'http://119.91.99.211:8989';  // 默认地址
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 

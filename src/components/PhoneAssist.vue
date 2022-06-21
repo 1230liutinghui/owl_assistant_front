@@ -209,6 +209,8 @@ export default {
           this.$message.error(res.data.msg)
         }
       })
+      this.list = []
+      this.$router.go(0)   //刷新页面
     },
     scrollDown() {
       this.$refs['leftScrollbar'].wrap.scrollTop = this.$refs['leftScrollbar'].wrap.scrollHeight
