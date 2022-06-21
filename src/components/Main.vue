@@ -1,10 +1,10 @@
 <template>
-  <el-container>
+  <el-container style="height: 100%">
     <el-header>
       <el-row>
         <el-col :span="4">
           <div style="text-align: left">
-          <el-image :src="require('@/assets/Group 1.png')" style="height: 1.2em;top: 0.6em;left: 0.3em"></el-image>
+          <el-image :src="require('@/assets/Group 1.png')" style="height: 1.2em;width:1.3em;top: 0.6em;left: 0.3em"></el-image>
           </div>
           <div style="text-align: center">
           <b class="top_left_text" style="top: 0.4em;left: 1.8em">猫头鹰助理</b>
@@ -31,7 +31,7 @@
         </el-col>
       </el-row>
     </el-header>
-    <el-container>
+    <el-container style="height: 100%">
       <el-aside width="15em">
         <el-menu
           default-active="activeIndex"
@@ -142,9 +142,10 @@ export default {
 .el-main {
   background-color: #FFFFFF;
   color: #333;
-  height: 94vh;
   border-left:1px solid #D3DCE6;
   padding-right: 0;
+  width: 80em;
+  height: 100%;
 }
 
 body > .el-container {

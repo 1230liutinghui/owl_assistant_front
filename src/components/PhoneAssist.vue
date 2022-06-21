@@ -33,7 +33,7 @@
       </el-scrollbar>
     </div>
 
-    <el-dialog title="表单弹框" :visible.sync="dialogVisible" width="70%" >
+    <el-dialog title="对话记录" :visible.sync="dialogVisible" width="70%" height="70%">
 
       <div class="communicate_box_in_dialog">
         <el-row :gutter="20">
@@ -65,6 +65,8 @@
           </el-card>
         </el-scrollbar>
       </div>
+      <br>
+      <br>
       <div class="rate">
         <el-rate
           v-model="form.score">
@@ -204,20 +206,28 @@ export default {
 
 <style>
 
+element.style {
+  margin-top: 15vh;
+  width: 70%;
+  height: 65%;
+}
 
 .communicate_box {
   overflow: hidden;
   width: auto;
-  height: 570px;
   color: #B3C0D1;
   /*margin: 0 auto;*/
 }
 .communicate_box_in_dialog{
   overflow: hidden;
   width: auto;
-  height: 300px;
+  height: 40vh;
   color: #B3C0D1;
   /*margin: 0 auto;*/
+}
+
+div.el-dialog__body {
+  padding-bottom: 0px;
 }
 /*.scrollMenuBox {*/
 /*  height: 200px;*/

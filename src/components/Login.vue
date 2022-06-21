@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container style="height: 100%">
     <el-header>
       <el-col :span="4">
         <div style="text-align: left">
@@ -10,7 +10,7 @@
         </div>
       </el-col>
     </el-header>
-    <el-main style="line-height: 30vh;padding-right: 0;">
+    <el-main style="height: 100%;padding-right: 0;">
       <el-row>
         <el-col :span="10">
           <div class="grid-content bg-white"></div>

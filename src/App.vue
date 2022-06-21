@@ -33,4 +33,5 @@ export default {
   html,body,#app{
   height: 100%;
 }
+
 </style>

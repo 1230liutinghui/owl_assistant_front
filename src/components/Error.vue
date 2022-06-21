@@ -1,48 +1,27 @@
 <template>
-  <el-container>
-    <el-header style="line-height: 45px; height: 45px;">
-      <el-row>
-        <el-col :span="4">
-          <el-image :src="require('@/assets/7.png')" style="width: 60px; height: 60px;">
-          </el-image>
-          <b class="top_left_text">猫头鹰助理</b>
-        </el-col>
-        <el-col :span="4"><br></el-col>
-        <el-col :span="4"><br></el-col>
-        <el-col :span="4"><br></el-col>
-        <el-col :span="4">
-          <el-image :src="require('@/assets/8.png')" style="width: 60px; height: 60px; float: right; left: 100px">
-          </el-image>
-        </el-col>
-        <el-col :span="4">
-          <el-popover
-            placement="top-start"
-            title="Shawn"
-            width="200"
-            trigger="hover"
-            class="right">
-            <div>
-              this is Shawn
-            </div>
-            <br>
-            <el-button type="danger" @click="LogOutNotification">Log out</el-button>
-            <el-button slot="reference" style="vertical-align: middle">Shawn</el-button>
-          </el-popover>
-        </el-col>
-      </el-row>
+  <el-container style="height: 100%">
+    <el-header>
+      <el-col :span="4">
+        <div style="text-align: left">
+          <el-image :src="require('@/assets/Group 1.png')" style="height: 1.2em;top: 0.6em;left: 0.3em"></el-image>
+        </div>
+        <div style="text-align: center">
+          <b class="top_left_text" style="top: 0.4em;left: 3.2em;margin: 0">猫头鹰助理</b>
+        </div>
+      </el-col>
     </el-header>
-    <el-divider class="el-divider--horizontal"></el-divider>
-    <el-main style="line-height: 400px;">
+    <el-main style="height: 100%;padding-right: 0;">
       <el-row>
-        <el-col :span="8">
+        <el-col :span="10">
           <div class="grid-content bg-white"></div>
         </el-col>
-        <el-col :span="8" style="margin-top: 80px">
-          <div>
-            <el-form>
+        <el-col :span="4" style="margin-top: 80px">
+          <div style="margin-top: 3em">
+            <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
               <el-form-item>
+                <br>
                 <el-row style="text-align: center">
-                  <b style="font-size: 32px;"> 登录 </b>
+                  <b style="font-size: 32px; margin-bottom: 0"> 登录 </b>
                 </el-row>
               </el-form-item>
               <el-form-item>
@@ -53,10 +32,15 @@
             </el-form>
           </div>
         </el-col>
-        <el-col :span="8">
-          <el-image :src="require('@/assets/7.png')"
-                    style="width: 343px; height: 450px" class="bg_picture">
-          </el-image>
+        <el-col :span="3">
+          <div style="width:100%;overflow: hidden;" >
+            <el-image :src="require('@/assets/7.png')" style="margin-top:6em;width: 3em;opacity: 0%;" class="bg_picture"></el-image>
+          </div>
+        </el-col>
+        <el-col :span="7">
+          <div style="text-align:right;width:100%;height:100%;overflow: hidden;" >
+            <el-image :src="require('@/assets/7.png')" style="margin-top:6em;width: 22em;;opacity: 70%;"></el-image>
+          </div>
         </el-col>
       </el-row>
     </el-main>
@@ -103,6 +87,22 @@ export default {
 <style scoped>
 .el-row {
   margin-bottom: 60px;
+}
+
+.router-link-active {
+  text-decoration: none;
+  color: blue;
+}
+
+.el-form-item__label {
+  font-weight: 200;
+}
+
+.el-header, .el-footer {
+  background-color: #FFFFFF;
+  color: #333;
+  line-height: 3em;
+  border-bottom:1px solid #D3DCE6
 }
 
 .el-col.last-child {
