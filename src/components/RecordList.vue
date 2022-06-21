@@ -6,29 +6,29 @@
     </el-breadcrumb>
     <br>
     <br>
-    <el-form :model="ruleForm" ref="ruleForm" label-width="7.2em">
+    <el-form :model="ruleForm" label-width="7.2em">
       <div style="padding-right: 2vh;display:inline">
       <!--input block-->
       <div style="display:inline">
-      <el-form-item label="客户联络方式" prop="phoneNumber" class="formItem">
-        <el-input v-model="ruleForm.phoneNumber" style="width: 15em"></el-input>
+      <el-form-item label="客户联络方式" prop="phone" class="formItem">
+        <el-input v-model="ruleForm.phone" style="width: 15em"></el-input>
       </el-form-item>
-      <el-form-item label="对话记录ID" prop="recordId" class="formItem">
-        <el-input v-model="ruleForm.workerId" style="width: 15em"></el-input>
+      <el-form-item label="对话记录ID" prop="id" class="formItem">
+        <el-input v-model="ruleForm.id" style="width: 15em"></el-input>
       </el-form-item>
       </div>
       <!--button-->
       <div style="display:inline;float:right;padding-right: 2vh">
       <el-form-item class="formItem" >
-        <el-button type="primary" @click="submitForm('ruleForm')">查询</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button type="primary" @click="submitForm">查询</el-button>
+        <el-button @click="resetForm">重置</el-button>
       </el-form-item>
       </div>
       </div>
       <div style="padding-right: 2vh">
       <br>
       <!--display table-->
-      <el-table :data="search == '' ? tableData : totalData.filter(data => !search || data.index.toLowerCase().includes(search.toLowerCase()))"
+      <el-table :data="tableData"
                 style="width: 100%">
         <el-table-column
           label="记录ID" prop="id"></el-table-column>
@@ -52,21 +52,12 @@ export default {
   data () {
     return {
       job_id: 0,
-      tableData: [
-        {
-          id: 0,
-          phone: '',
-          start_time: '',
-          end_time: '',
-          score: 0
-        }
-      ],
-      totalData: [],
+      tableData: [],         //显示的数据
+      totalData: [],         //根据工号查询的所有数据
       ruleForm: {
         phone: '',
-        id: 0
-      },
-      search: ''
+        id: ''
+      }
     }
   },
   created() {
@@ -83,29 +74,31 @@ export default {
     })
   },
   methods: {
-    handleSearch () {
-      this.total = this.totalData.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase())).length
-    },
-    handleSizeChange (val) {
-      this.pageSize = val
-      this.getTableData(this.currentPage, val)
-    },
-    handleCurrentChange (val) {
-      this.currentPage = val
-      this.getTableData(val, this.pageSize)
-    },
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
+    submitForm () {
+      let that = this
+      let ruleForm = that.ruleForm
+      if (ruleForm.phone === '' && ruleForm.id === '') {
+        that.$message({
+          message: '请输入搜索条件',
+          type: 'warning'
+        })
+        that.tableData = that.totalData
+        return
+      }
+      that.tableData = that.totalData.filter(function (item) {
+        if (ruleForm.phone !== '' && ruleForm.id !== '') {
+          return item.phone.includes(ruleForm.phone) && item.id === parseInt(ruleForm.id)
+        } else if (ruleForm.phone !== '') {
+          return item.phone.includes(ruleForm.phone)
         } else {
-          console.log('error submit!!')
-          return false
+          return item.id === parseInt(ruleForm.id)
         }
       })
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    resetForm () {
+      this.ruleForm.phone = ''
+      this.ruleForm.id = ''
+      this.tableData = this.totalData
     }
   }
 }

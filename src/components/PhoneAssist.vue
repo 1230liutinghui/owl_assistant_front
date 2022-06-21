@@ -71,7 +71,7 @@
         </el-rate>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="submit">确 定</el-button>
       </span>
     </el-dialog>
 
@@ -96,7 +96,7 @@ const iatRecorder = new IatRecorder({
     if (start_time == undefined)
       return
     text_time.push(start_time)
-    if (voice == '')
+    if (voice == '' || voice == undefined)
       return
     if (text_list.length >= 1) {
       //获取第一个字符是否为标点符号
@@ -125,7 +125,6 @@ const iatRecorder = new IatRecorder({
         }
       })
     }
-    this.$refs['leftScrollbar'].wrap.scrollTop = this.$refs['leftScrollbar'].wrap.scrollHeight;//滚动条置底
   }
 })
 
@@ -149,6 +148,17 @@ export default {
       },
       keywords: keyword,
       contents: content
+    }
+  },
+  //监听list变化
+  watch: {
+    'list': {
+      handler : function (newValue, oldValue) {
+        this.$nextTick(function () {
+          this.scrollDown()
+        })
+      },
+      deep: true
     }
   },
   methods: {
@@ -197,8 +207,11 @@ export default {
           this.$message.error(res.data.msg)
         }
       })
+    },
+    scrollDown() {
+      this.$refs['leftScrollbar'].wrap.scrollTop = this.$refs['leftScrollbar'].wrap.scrollHeight
     }
-  },
+  }
 }
 </script>
 

@@ -6,14 +6,10 @@ import router from './router'
 import ElementUI from 'element-ui'
 import axios from 'axios'
 import 'element-ui/lib/theme-chalk/index.css'
-import LemonIMUI from 'lemon-imui'
-import 'lemon-imui/dist/index.css'
 
-//LemonIMUI
-Vue.use(LemonIMUI)
 Vue.use(ElementUI)
 
-axios.defaults.baseURL = 'http://119.91.99.211:8989';  // 默认地址
+axios.defaults.baseURL = 'http://localhost:8989';  // 默认地址
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 

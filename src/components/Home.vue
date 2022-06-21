@@ -1,12 +1,4 @@
 <template>
-<!--  <el-carousel height="800">-->
-<!--    <el-carousel-item v-for="item in images" :key="item">-->
-<!--      <el-image-->
-<!--        style="height: 800px; width: 100%"-->
-<!--        :src="item"-->
-<!--        fit="fill"></el-image>-->
-<!--    </el-carousel-item>-->
-<!--  </el-carousel>-->
   <div>
   <el-breadcrumb separator="/">
     <el-breadcrumb-item :to="{ path: '/' }" class="el-icon-s-home"></el-breadcrumb-item>
