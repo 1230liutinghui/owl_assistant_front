@@ -16,7 +16,6 @@
     "element-ui": "^2.15.8",
     "enc": "^0.4.0",
     "fastclick": "^1.0.6",
-    "lemon-imui": "^1.7.4",
     "nprogress": "^0.2.0",
     "recorderx": "^2.0.2",
     "vconsole": "^3.14.6",
