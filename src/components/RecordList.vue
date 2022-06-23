@@ -29,9 +29,16 @@
       <br>
       <!--display table-->
       <el-table :data="tableData"
+                @cell-click="toDetail"
                 style="width: 100%">
         <el-table-column
-          label="记录ID" prop="id"></el-table-column>
+          label="记录ID" prop="id">
+          <template slot-scope="scope">
+            <router-link :to="{name:'recordDetail', query:{id:scope.row.id}}" style="text-decoration: none">
+              <el-link type="primary" :underline="false" href="#">{{scope.row.id}}</el-link>
+            </router-link>
+          </template>
+        </el-table-column>
         <el-table-column
           label="客户联络方式" prop="phone"></el-table-column>
         <el-table-column
@@ -99,6 +106,13 @@ export default {
       this.ruleForm.phone = ''
       this.ruleForm.id = ''
       this.tableData = this.totalData
+    },
+    //查看记录详情
+    toDetail(row, column, cell, event) {
+      console.log(row)
+      console.log(column)
+      console.log(cell)
+      console.log(event)
     }
   }
 }

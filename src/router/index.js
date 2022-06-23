@@ -43,7 +43,7 @@ export default new Router({
         name: 'phoneAssist',
         component: PhoneAssist
       }, {
-        path: 'recordList/recordDetail',
+        path: 'recordDetail',
         name: 'recordDetail',
         component: RecordDetail
       }
