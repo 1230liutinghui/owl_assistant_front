@@ -78,10 +78,13 @@ export default {
           if (res.data.code === 200) {
             this.$message({
               type: 'success',
-              message: 'log out success!'
+              message: '注销成功!'
             })
             localStorage.removeItem('token')
             this.$router.replace({path: '/'})
+          } else if (res.data.code === 401) {
+            this.$message.error('登录过期，请重新登录');
+            this.$router.push('/login')
           } else {
             alert('注销失败，请重试')
           }
@@ -89,7 +92,7 @@ export default {
       }).catch(() => {
         this.$message({
           type: 'info',
-          message: 'log out canceled'
+          message: '注销失败'
         })
       })
     },
@@ -106,7 +109,10 @@ export default {
         'token': localStorage.getItem('token')
       }
     }).then(res => {
-      if (res.data.code === 403) {
+      if (res.data.code === 401) {
+        this.$message.error('登录过期，请重新登录');
+        this.$router.push('/login')
+      } else if (res.data.code === 403) {
         this.$router.push('/Error')
       }
     })

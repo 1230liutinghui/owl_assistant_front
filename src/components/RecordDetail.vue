@@ -66,6 +66,10 @@ export default {
         'token': localStorage.getItem('token')
       }
     }).then(res => {
+      if (res.data.code === 401) {
+        this.$message.error('登录过期，请重新登录');
+        this.$router.push('/login')
+      }
       this.record = res.data
       this.value = res.data.score
       let test = res.data.content

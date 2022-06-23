@@ -207,7 +207,10 @@ export default {
             message: res.data.msg,
             type: 'success'
           })
-        }else {
+        }else if (res.data.code === 401) {
+          this.$message.error('登录过期，请重新登录');
+          this.$router.push('/login')
+        } else {
           this.$message.error(res.data.msg)
         }
       })

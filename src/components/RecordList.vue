@@ -86,8 +86,14 @@ export default {
         'token': localStorage.getItem('token')
       }
     }).then(res => {
-      this.tableData = res.data
-      this.totalData = res.data
+      //code为401时，用户token失效，需要重新登录
+      if (res.data.code == 401) {
+        this.$message.error('登录过期，请重新登录');
+        this.$router.push('/login')
+      } else {
+        this.tableData = res.data
+        this.totalData = res.data
+      }
     })
   },
   methods: {
