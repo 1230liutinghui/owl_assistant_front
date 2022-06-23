@@ -17,7 +17,7 @@
         </el-col>
         <el-col :span="4" style="margin-top: 80px">
           <div style="margin-top: 3em">
-            <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
+            <el-form status-icon class="demo-ruleForm">
               <el-form-item>
                 <br>
                 <el-row style="text-align: center">
