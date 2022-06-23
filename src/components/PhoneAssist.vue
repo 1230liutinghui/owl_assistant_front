@@ -201,6 +201,8 @@ export default {
       }).then(res => {
         console.log(res)
         if (res.data.code === 200) {
+          this.list = []
+          this.$router.go(0)   //刷新页面
           this.$message({
             message: res.data.msg,
             type: 'success'
@@ -209,8 +211,6 @@ export default {
           this.$message.error(res.data.msg)
         }
       })
-      this.list = []
-      this.$router.go(0)   //刷新页面
     },
     scrollDown() {
       this.$refs['leftScrollbar'].wrap.scrollTop = this.$refs['leftScrollbar'].wrap.scrollHeight
