@@ -34,7 +34,7 @@
     <el-container style="height: 100%">
       <el-aside width="15em">
         <el-menu
-          :default-active="$route.path"
+          :default-active="this.currentMenu"
           class="el-menu-vertical-demo"
           @select="handleSelect">
           <el-menu-item index="/Main/Home">
@@ -60,7 +60,7 @@ export default {
   name: 'Main',
   data () {
     return {
-
+      currentMenu: "/Main/Home"
     }
   },
   methods: {
@@ -116,7 +116,16 @@ export default {
         this.$router.push('/Error')
       }
     })
-  }
+  },
+  watch: {
+    $route(e) {
+      console.log(e)
+      this.currentMenu = e.path;  // e里面的是当前路由的信息
+      if(e.path.indexOf("Detail")!==-1){
+        this.currentMenu = "/Main/recordList"
+      }
+    },
+  },
 }
 
 </script>
