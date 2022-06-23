@@ -34,7 +34,7 @@
     <div class="communicate_box">
       <el-scrollbar style="height:100%">
         <el-card class="box-card">
-          <el-card class="box-card" v-for="(item, ind) in list" :key="ind">
+          <div class="box-card" v-for="(item, ind) in list" :key="ind">
             <div v-for="(str, index) in item" :key="str">
               <!--营销人员-->
               <div v-if="index == 0" style="text-align: right">
@@ -43,9 +43,10 @@
                     <div style="font-size: 1px">{{s}}</div>
                   </div>
                   <div v-else>
-                    <el-card style="display: inline-block;">{{s}}</el-card>
-                    &nbsp
-                    <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+                    <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                      {{s}}
+                    </el-card>
+                    <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>
                   </div>
                 </div>
               </div>
@@ -56,25 +57,30 @@
                     <div style="font-size: 1px">{{s}}</div>
                   </div>
                   <div v-else>
-                    <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image>
-                    {{s}}
+                    <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0em"></el-image>
+                    <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                      {{s}}
+                    </el-card>
                   </div>
                 </div>
                 <br>
               </div>
               <!--提示-->
               <div v-else style="text-align: left">
-                <div v-for="(s, index) in str.split('\t')">
-                  <div v-if="index%2 == 0">
-                    <b>{{s}}</b>
+                <el-card>
+                  <div v-for="(s, index) in str.split('\t')">
+                    <div v-if="index%2 == 0">
+                      <b>{{s}}</b>
+                    </div>
+                    <div v-else>
+                      {{s}}
+                    </div>
                   </div>
-                  <div v-else>
-                    {{s}}
-                  </div>
-                </div>
+                </el-card>
               </div>
             </div>
-          </el-card>
+            <br>
+          </div>
         </el-card>
       </el-scrollbar>
     </div>
