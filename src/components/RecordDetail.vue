@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/记录列表' }" class="el-icon-s-home"></el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/记录列表' }"><a href="/#/Main/" class="el-icon-s-home"></a></el-breadcrumb-item>
       <el-breadcrumb-item><a href="/#/Main/recordList">记录列表</a></el-breadcrumb-item>
-      <el-breadcrumb-item><a href="/#/Main/recordList/recordDetail">记录详情</a></el-breadcrumb-item>
+      <el-breadcrumb-item><a >记录详情</a></el-breadcrumb-item>
     </el-breadcrumb>
     <br>
     <el-card class="box-card">

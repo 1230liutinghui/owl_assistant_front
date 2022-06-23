@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }" class="el-icon-s-home"></el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }"><a href="/#/Main/" class="el-icon-s-home"></a></el-breadcrumb-item>
       <el-breadcrumb-item><a href="/#/Main/recordList">记录列表</a></el-breadcrumb-item>
     </el-breadcrumb>
     <br>
@@ -30,7 +30,8 @@
       <!--display table-->
       <el-table :data="tableData"
                 @cell-click="toDetail"
-                style="width: 100%">
+                style="width: 100%"
+                @row-click="openDetail">
         <el-table-column
           label="记录ID" prop="id">
           <template slot-scope="scope">
@@ -54,6 +55,16 @@
 </template>
 
 <script>
+
+var tmp_list = [
+  "111111",
+  "222222",
+  "333333",
+  "444444",
+  "555555",
+  "666666",
+]
+
 export default {
   name: 'RecordList',
   data () {
@@ -64,7 +75,7 @@ export default {
       ruleForm: {
         phone: '',
         id: ''
-      }
+      },
     }
   },
   created() {
@@ -81,6 +92,49 @@ export default {
     })
   },
   methods: {
+    openDetail (row) {
+
+      localStorage.setItem('detail_recordID', '2222')
+      localStorage.setItem('detail_workerId', 'LANXIANG233')
+      localStorage.setItem('detail_phoneNumber', '110')
+      localStorage.setItem('detail_sellerName', '张三')
+      localStorage.setItem('detail_customerName', '王五')
+      localStorage.setItem('detail_rate', 2)
+      localStorage.setItem('detail_list', JSON.stringify(tmp_list))
+      localStorage.setItem('detail_keywords', JSON.stringify(tmp_list))
+      localStorage.setItem('detail_contents', JSON.stringify(tmp_list))
+      this.$router.push("/Main/recordList/recordDetail");
+
+      // this.$http.post('/queryById', row.id).then(res => {
+      //   //console.log(res.data)
+      //    //res.data.code === 200
+      //   localStorage.setItem('detail_recordID', data.data().)
+      //   localStorage.setItem('detail_workerId', 'LANXIANG233')
+      //   localStorage.setItem('detail_phoneNumber', '110')
+      //   localStorage.setItem('detail_sellerName', '张三')
+      //   localStorage.setItem('detail_customerName', '王五')
+      //   localStorage.setItem('detail_rate', 4)
+      //   localStorage.setItem('')
+      //   this.$router.push("/Main/recordList/recordDetail");
+      // })
+
+      this.$http.get('/queryById?id='+row.id,{
+        headers: {
+          'token': localStorage.getItem('token')
+        }
+      }).then(res => {
+        console.log(res)
+        // if (res.data.code === 200) {
+        //   this.$message({
+        //     message: res.data.msg,
+        //     type: 'success'
+        //   })
+        // }else {
+        //   this.$message.error(res.data.msg)
+        // }
+        this.obj = res.data
+      })
+    },
     submitForm () {
       let that = this
       let ruleForm = that.ruleForm
