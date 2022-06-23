@@ -45,9 +45,7 @@
                   <div v-else>
                     <el-card style="display: inline-block;">{{s}}</el-card>
                     &nbsp
-                    <div style="display: inline-block;">
-                      <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
-                    </div>
+                    <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
                   </div>
                 </div>
               </div>
