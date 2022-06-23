@@ -34,7 +34,7 @@
     <el-container style="height: 100%">
       <el-aside width="15em">
         <el-menu
-          default-active="activeIndex"
+          :default-active="$route.path"
           class="el-menu-vertical-demo"
           @select="handleSelect">
           <el-menu-item index="/Main/Home">
@@ -60,7 +60,7 @@ export default {
   name: 'Main',
   data () {
     return {
-      activeIndex: this.$route.path
+
     }
   },
   methods: {
