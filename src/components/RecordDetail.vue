@@ -43,7 +43,7 @@
                     <div style="font-size: 1px">{{s}}</div>
                   </div>
                   <div v-else>
-                    <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                    <el-card :body-style="{padding:'10px'}" style="display: inline-block">
                       {{s}}
                     </el-card>
                     <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>

@@ -17,25 +17,32 @@
     </el-row>
     <br>
     <div class="communicate_box" style="padding-right: 2vh;height: 80vh">
-        <el-scrollbar ref="leftScrollbar" style="height:100%">
-        <el-card class="box-card" style="margin-bottom: 20px">
-          <el-card v-for="(item, index) in list" :key="item" style="padding: 5px">
+      <el-scrollbar ref="leftScrollbar" style="height:100%">
+        <div class="box-card" style="margin-bottom: 20px">
+          <div v-for="(item, index) in list" :key="item" style="padding: 5px">
             <div v-if="index % 2 ==0" style="text-align: right">
-              {{ item }}
-              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+              <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                {{item}}
+              </el-card>
+              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>
             </div>
             <div v-else style="text-align: left">
-              <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image> {{ item }}
+              <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0em"></el-image>
+              <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                {{item}}
+              </el-card>
               <div><br></div>
-              <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
-                <b>{{key}}</b>
-                {{contents[(index-1)/2][index_3]}}
-              </div>
+              <el-card>
+                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                  <b>{{key}}</b>
+                  {{contents[(index-1)/2][index_3]}}
+                </div>
+              </el-card>
             </div>
             <br>
-          </el-card>
+          </div>
           <br>
-        </el-card>
+        </div>
       </el-scrollbar>
     </div>
 
@@ -58,40 +65,34 @@
         <br>
         <div class="communicate_box" style="padding-right: 2vh;height: 80vh">
           <el-scrollbar ref="leftScrollbar" style="height:100%">
-            <el-card class="box-card" style="margin-bottom: 20px">
+            <div class="box-card" style="margin-bottom: 20px">
               <el-card v-for="(item, index) in list" :key="item" style="padding: 5px">
                 <div v-if="index % 2 ==0" style="text-align: right">
-                  {{ item }}
-                  <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+                  <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                    {{item}}
+                  </el-card>
+                  <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>
                 </div>
                 <div v-else style="text-align: left">
-                  <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image> {{ item }}
+                  <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0em"></el-image>
+                  <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
+                    {{item}}
+                  </el-card>
                   <div><br></div>
-                  <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
-                    <b>{{key}}</b>
-                    {{contents[(index-1)/2][index_3]}}
-                  </div>
+                  <el-card>
+                    <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                      <b>{{key}}</b>
+                      {{contents[(index-1)/2][index_3]}}
+                    </div>
+                  </el-card>
                 </div>
                 <br>
               </el-card>
               <br>
-            </el-card>
+            </div>
           </el-scrollbar>
         </div>
-        <!--        <el-scrollbar style="height:100%">-->
-<!--          <el-card class="box-card">-->
-<!--            <el-card v-for="(item, index) in list" :key="item">-->
-<!--              <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>-->
-<!--              <div v-else style="text-align: left">-->
-<!--                <div>{{ item }}</div>-->
-<!--                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">-->
-<!--                  {{key}}-->
-<!--                  {{contents[(index-1)/2][index_3]}}-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </el-card>-->
-<!--          </el-card>-->
-<!--        </el-scrollbar>-->
+
       </div>
       <br>
       <br>
