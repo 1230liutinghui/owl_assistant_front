@@ -19,21 +19,27 @@
     <div class="communicate_box" style="padding-right: 2vh;height: 80vh">
         <el-scrollbar ref="leftScrollbar" style="height:100%">
         <el-card class="box-card" style="margin-bottom: 20px">
-          <el-card v-for="(item, index) in list" :key="item">
-            <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
+          <el-card v-for="(item, index) in list" :key="item" style="padding: 5px">
+            <div v-if="index % 2 ==0" style="text-align: right">
+              {{ item }}
+              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+            </div>
             <div v-else style="text-align: left">
-              <div>{{ item }}</div>
+              <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image> {{ item }}
+              <div><br></div>
               <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
-                {{key}}
+                <b>{{key}}</b>
                 {{contents[(index-1)/2][index_3]}}
               </div>
             </div>
+            <br>
           </el-card>
+          <br>
         </el-card>
       </el-scrollbar>
     </div>
 
-    <el-dialog title="对话记录" :visible.sync="dialogVisible" width="70%" height="70%">
+    <el-dialog title="对话记录" :visible.sync="dialogVisible" width="60%" height="100%">
 
       <div class="communicate_box_in_dialog">
         <el-row :gutter="20">
@@ -50,20 +56,42 @@
           <el-col :span="6">{{form.end_time}}</el-col>
         </el-row>
         <br>
-        <el-scrollbar style="height:100%">
-          <el-card class="box-card">
-            <el-card v-for="(item, index) in list" :key="item">
-              <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>
-              <div v-else style="text-align: left">
-                <div>{{ item }}</div>
-                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
-                  {{key}}
-                  {{contents[(index-1)/2][index_3]}}
+        <div class="communicate_box" style="padding-right: 2vh;height: 80vh">
+          <el-scrollbar ref="leftScrollbar" style="height:100%">
+            <el-card class="box-card" style="margin-bottom: 20px">
+              <el-card v-for="(item, index) in list" :key="item" style="padding: 5px">
+                <div v-if="index % 2 ==0" style="text-align: right">
+                  {{ item }}
+                  <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
                 </div>
-              </div>
+                <div v-else style="text-align: left">
+                  <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image> {{ item }}
+                  <div><br></div>
+                  <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                    <b>{{key}}</b>
+                    {{contents[(index-1)/2][index_3]}}
+                  </div>
+                </div>
+                <br>
+              </el-card>
+              <br>
             </el-card>
-          </el-card>
-        </el-scrollbar>
+          </el-scrollbar>
+        </div>
+        <!--        <el-scrollbar style="height:100%">-->
+<!--          <el-card class="box-card">-->
+<!--            <el-card v-for="(item, index) in list" :key="item">-->
+<!--              <div v-if="index % 2 ==0" style="text-align: right">{{ item }}</div>-->
+<!--              <div v-else style="text-align: left">-->
+<!--                <div>{{ item }}</div>-->
+<!--                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">-->
+<!--                  {{key}}-->
+<!--                  {{contents[(index-1)/2][index_3]}}-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </el-card>-->
+<!--          </el-card>-->
+<!--        </el-scrollbar>-->
       </div>
       <br>
       <br>
@@ -98,7 +126,7 @@ const iatRecorder = new IatRecorder({
     if (start_time == undefined)
       return
     text_time.push(start_time)
-    if (voice == '' || voice == undefined)
+    if (voice == '' || voice == undefined||voice == 'undefined')
       return
     if (text_list.length >= 1) {
       //获取第一个字符是否为标点符号
@@ -111,7 +139,7 @@ const iatRecorder = new IatRecorder({
         voice = voice.substring(1, voice.length)
       }
     }
-    if (voice == undefined || voice =='')
+    if (voice == undefined || voice ==''||voice == 'undefined')
       return
     text_list.push(voice)
     if (text_list.length % 2 == 0) {

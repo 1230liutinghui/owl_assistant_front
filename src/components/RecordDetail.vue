@@ -36,8 +36,45 @@
         <el-card class="box-card">
           <el-card class="box-card" v-for="(item, ind) in list" :key="ind">
             <div v-for="(str, index) in item" :key="str">
-              <div v-if="index == 0" style="text-align: right">{{ str }}</div>
-              <div v-else style="text-align: left">{{ str }}</div>
+              <!--营销人员-->
+              <div v-if="index == 0" style="text-align: right">
+                <div v-for="(s, index) in str.split('\t').reverse()">
+                  <div v-if="index==0">
+                    <div style="font-size: 1px">{{s}}</div>
+                  </div>
+                  <div v-else>
+                    <el-card style="display: inline-block;">{{s}}</el-card>
+                    &nbsp
+                    <div style="display: inline-block;">
+                      <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--客户-->
+              <div v-else-if="index == 1" style="text-align: left">
+                <div v-for="(s, index) in str.split('\t').reverse()">
+                  <div v-if="index==0">
+                    <div style="font-size: 1px">{{s}}</div>
+                  </div>
+                  <div v-else>
+                    <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image>
+                    {{s}}
+                  </div>
+                </div>
+                <br>
+              </div>
+              <!--提示-->
+              <div v-else style="text-align: left">
+                <div v-for="(s, index) in str.split('\t')">
+                  <div v-if="index%2 == 0">
+                    <b>{{s}}</b>
+                  </div>
+                  <div v-else>
+                    {{s}}
+                  </div>
+                </div>
+              </div>
             </div>
           </el-card>
         </el-card>
