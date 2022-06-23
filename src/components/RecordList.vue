@@ -30,8 +30,7 @@
       <!--display table-->
       <el-table :data="tableData"
                 @cell-click="toDetail"
-                style="width: 100%"
-                @row-click="openDetail">
+                style="width: 100%">
         <el-table-column
           label="记录ID" prop="id">
           <template slot-scope="scope">
