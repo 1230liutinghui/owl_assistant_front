@@ -29,7 +29,12 @@
                   <b style="font-size: 20px;"> 抱歉，您当前无访问权限 </b>
                 </el-row>
               </el-form-item>
-            </el-form>
+              <el-form-item>
+                <el-row style="text-align: center">
+                  <el-button type="danger" style="margin-left: 0em;font-weight: 300;font-size: 1em;" size="small"><router-link to="/Login" class="buttonStyle">返回登录</router-link></el-button>
+                </el-row>
+              </el-form-item>
+              </el-form>
           </div>
         </el-col>
         <el-col :span="3">
@@ -156,5 +161,11 @@ export default {
   position: absolute;
   left: 70px;
   margin: 10px;
+}
+
+.buttonStyle{
+  text-decoration:none;
+  color: white;
+  font-size: 20px;
 }
 </style>
