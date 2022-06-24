@@ -29,7 +29,7 @@
               </el-form-item>
               <el-form-item style="margin-bottom: 0">
                 <el-row style="text-align: center;margin-top: 1em">
-                  <el-button type="primary" @click="submitForm('ruleForm')"> OA自动登录</el-button>
+                  <el-button type="primary" @click="login"> OA自动登录</el-button>
                 </el-row>
               </el-form-item>
               <el-form-item>
@@ -88,19 +88,13 @@ export default {
     }
   },
   methods: {
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          console.log('submit!')
-          this.$router.push('/main')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    login() {
+      let token = localStorage.getItem('token')
+      if (token !== null) {
+        this.$router.push('/main')
+      } else {
+        alert('未登录，请使用账号密码登录')
+      }
     }
   }
 }

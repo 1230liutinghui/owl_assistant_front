@@ -124,11 +124,11 @@ const iatRecorder = new IatRecorder({
   onTextChange: function (text) {
     let voice = text.split('\t')[0]
     let start_time = text.split('\t')[1]
-    if (start_time == undefined)
+    if (voice === '' || voice === undefined)
+      return
+    if (start_time === undefined)
       return
     text_time.push(start_time)
-    if (voice == '' || voice == undefined||voice == 'undefined')
-      return
     if (text_list.length >= 1) {
       //获取第一个字符是否为标点符号
       let punctuation = voice.charAt(0)
@@ -140,10 +140,10 @@ const iatRecorder = new IatRecorder({
         voice = voice.substring(1, voice.length)
       }
     }
-    if (voice == undefined || voice ==''||voice == 'undefined')
+    if (voice === undefined || voice ==='')
       return
     text_list.push(voice)
-    if (text_list.length % 2 == 0) {
+    if (text_list.length % 2 === 0) {
       axios.get('/recommend?str=' + voice, {
         headers: {
           'token': localStorage.getItem('token')

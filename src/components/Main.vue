@@ -65,9 +65,9 @@ export default {
   },
   methods: {
     LogOutNotification () {
-      this.$confirm('Are you sure to log out?', 'Warning', {
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
+      this.$confirm('确认注销?', 'Warning', {
+        confirmButtonText: '是',
+        cancelButtonText: '否',
         type: 'warning'
       }).then(() => {
         this.$http.get('/user/logout', {
