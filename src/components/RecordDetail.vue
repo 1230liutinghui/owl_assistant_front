@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-right: 2vh">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/记录列表' }"><a href="/#/Main/" class="el-icon-s-home"></a></el-breadcrumb-item>
       <el-breadcrumb-item><a href="/#/Main/recordList">记录列表</a></el-breadcrumb-item>
@@ -7,7 +7,9 @@
     </el-breadcrumb>
     <br>
     <el-card class="box-card">
-        <b style="line-height: 50px">记录信息</b>
+      <div style="margin-bottom: 1.3em">
+        <b>记录信息</b>
+      </div>
       <el-row>
         <el-col :span="8"><div>记录ID：{{this.record.id}}</div></el-col>
         <el-col :span="8"><div>销售人员工号：{{this.record.job_id}}</div></el-col>
@@ -46,7 +48,7 @@
                     <el-card :body-style="{padding:'10px'}" style="display: inline-block">
                       {{s}}
                     </el-card>
-                    <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>
+                    <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
                   </div>
                 </div>
               </div>
@@ -57,7 +59,7 @@
                     <div style="font-size: 1px">{{s}}</div>
                   </div>
                   <div v-else>
-                    <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0em"></el-image>
+                    <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0.7em"></el-image>
                     <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                       {{s}}
                     </el-card>

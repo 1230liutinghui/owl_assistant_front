@@ -24,10 +24,10 @@
               <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                 {{item}}
               </el-card>
-              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>
+              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
             </div>
             <div v-else style="text-align: left">
-              <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0em"></el-image>
+              <el-image :src="require('@/assets/client.png')" style="wwidth: 2.4em;top: 0.7em"></el-image>
               <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                 {{item}}
               </el-card>
@@ -269,7 +269,8 @@ element.style {
   overflow: hidden;
   width: auto;
   height: 40vh;
-  color: #B3C0D1;
+  color: #575757;
+  margin-left: 2vh;
   /*margin: 0 auto;*/
 }
 
