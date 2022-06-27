@@ -21,19 +21,23 @@
         <div class="box-card" style="margin-bottom: 20px">
           <div v-for="(item, index) in list" :key="item" style="padding: 5px">
             <div v-if="index % 2 ==0" style="text-align: right">
+              <div>
               <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                 {{item}}
               </el-card>
-              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+              <el-image :src="require('@/assets/8.png')" style="width: 2.4em;margin-bottom: 0.2em"></el-image>
+              </div>
             </div>
             <div v-else style="text-align: left">
-              <el-image :src="require('@/assets/client.png')" style="wwidth: 2.4em;top: 0.7em"></el-image>
+              <div>
+              <el-image :src="require('@/assets/client.png')" style="width: 2.4em;margin-bottom: 0.2em"></el-image>
               <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                 {{item}}
               </el-card>
+              </div>
               <div><br></div>
               <el-card>
-                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key" style="line-height: 2em">
                   <b>{{key}}</b>
                   {{contents[(index-1)/2][index_3]}}
                 </div>
@@ -68,19 +72,23 @@
             <div class="box-card" style="margin-bottom: 20px">
               <el-card v-for="(item, index) in list" :key="item" style="padding: 5px">
                 <div v-if="index % 2 ==0" style="text-align: right">
+                  <div>
                   <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                     {{item}}
                   </el-card>
-                  <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0em"></el-image>
+                  <el-image :src="require('@/assets/8.png')" style="width: 2.4em;margin-bottom: 0.2em"></el-image>
+                  </div>
                 </div>
                 <div v-else style="text-align: left">
-                  <el-image :src="require('@/assets/client.png')" style="width: 2.4em;top: 0em"></el-image>
+                  <div>
+                  <el-image :src="require('@/assets/client.png')" style="width: 2.4em;margin-bottom: 0.2em"></el-image>
                   <el-card :body-style="{padding:'10px'}" style="display: inline-block;">
                     {{item}}
                   </el-card>
+                  </div>
                   <div><br></div>
                   <el-card>
-                    <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key">
+                    <div v-for="(key, index_3) in keywords[(index-1)/2]" :key="key" style="line-height: 2em">
                       <b>{{key}}</b>
                       {{contents[(index-1)/2][index_3]}}
                     </div>
