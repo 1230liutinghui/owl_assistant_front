@@ -100,9 +100,9 @@ export default {
       }
       that.tableData = that.totalData.filter(function (item) {
         if (ruleForm.phone !== '' && ruleForm.id !== '') {
-          return item.phone.includes(ruleForm.phone) && item.id === parseInt(ruleForm.id)
+          return item.phone.startsWith(ruleForm.phone) && item.id === parseInt(ruleForm.id)
         } else if (ruleForm.phone !== '') {
-          return item.phone.includes(ruleForm.phone)
+          return item.phone.startsWith(ruleForm.phone)
         } else {
           return item.id === parseInt(ruleForm.id)
         }

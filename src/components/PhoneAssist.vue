@@ -178,8 +178,8 @@ export default {
       loadingbuttext:'开始对话',
       showclose: false,
       form: {
-        job_id: 2019,
-        phone: '18900000000',
+        job_id: 0,
+        phone: '',
         score: 0,
         start_time: '',
         end_time: '',
@@ -199,6 +199,11 @@ export default {
       },
       deep: true
     }
+  },
+  created() {
+    this.form.job_id = parseInt(localStorage.getItem('userName'))
+    let phone = Math.floor(Math.random() * 9 ) + 1            //随机生成1~9之间的整数
+    this.form.phone = phone.toString() + '1230'
   },
   methods: {
     translationStart() {

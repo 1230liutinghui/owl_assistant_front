@@ -119,7 +119,6 @@ export default {
   },
   watch: {
     $route(e) {
-      console.log(e)
       this.currentMenu = e.path;  // e里面的是当前路由的信息
       if(e.path.indexOf("Detail")!==-1){
         this.currentMenu = "/Main/recordList"

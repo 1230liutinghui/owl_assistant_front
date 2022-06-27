@@ -25,12 +25,12 @@
                 </el-row>
               </el-form-item>
               <el-form-item label="工号" prop="userName" style="font-weight: 600;">
-                <el-input style="width: 100%" placeholder="请输入内容" v-model="ruleForm.userName"
+                <el-input style="width: 100%" placeholder="请输入工号" v-model="ruleForm.userName"
                           autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item label="密码" prop="password" style="font-weight: 600;">
-                <el-input style="width: 100%" placeholder="请输入内容" type="password" v-model="ruleForm.password"
-                          autocomplete="off"></el-input>
+                <el-input style="width: 100%" placeholder="请输入密码" type="password" v-model="ruleForm.password"
+                          autocomplete="off" show-password></el-input>
               </el-form-item>
               <el-form-item>
                 <el-row style="text-align: center;margin-top: 2em;">
@@ -108,6 +108,10 @@ export default {
               // alert(res.data.msg)
               localStorage.setItem('token', res.data.data.token)
               localStorage.setItem('userName', this.ruleForm.userName)
+              this.$message({
+                message: '登录成功',
+                type: 'success'
+              })
               this.$router.push('/main')
             } else if (res.data.code === 401) {
               alert('用户名或密码错误，请重试')
