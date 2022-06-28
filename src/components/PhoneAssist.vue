@@ -67,7 +67,7 @@
           <el-col :span="6">{{form.end_time}}</el-col>
         </el-row>
         <br>
-        <div class="communicate_box" style="padding-right: 2vh;height: 80vh">
+        <div class="communicate_box" style="padding-right: 2vh;height: 40vh">
           <el-scrollbar ref="leftScrollbar" style="height:100%">
             <div class="box-card" style="margin-bottom: 20px">
               <el-card v-for="(item, index) in list" :key="item" style="padding: 5px">

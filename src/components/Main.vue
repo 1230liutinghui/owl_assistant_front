@@ -4,29 +4,26 @@
       <el-row>
         <el-col :span="4">
           <div style="text-align: left">
-          <el-image :src="require('@/assets/Group 1.png')" style="height: 1.2em;width:1.3em;top: 0.6em;left: 0.3em"></el-image>
+            <el-image :src="require('@/assets/Group 1.png')"
+                      style="height: 1.2em;width:1.3em;top: 0.6em;left: 0.3em"></el-image>
           </div>
           <div style="text-align: center">
-          <b class="top_left_text" style="top: 0.4em;left: 1.8em">猫头鹰助理</b>
+            <b class="top_left_text" style="top: 0.4em;left: 1.8em">猫头鹰助理</b>
           </div>
         </el-col>
         <el-col :span="16"><br></el-col>
         <el-popover
-            placement="top-start"
-            title="Shawn"
-            width="200"
-            trigger="hover"
-            class="right">
-            <div>
-              this is Shawn
-            </div>
-            <br>
-            <el-button type="danger" @click="LogOutNotification">Log out</el-button>
-            <el-button slot="reference" style="margin-top: 1.2em;margin-right: 1.8em" size="small">Shawn</el-button>
-          </el-popover>
+          placement="top-start"
+          width="150px"
+          trigger="hover"
+          class="right">
+          <div style="margin-bottom: 10px; font-size: 15px">工号: {{user}}</div>
+          <el-button type="danger" @click="LogOutNotification">注销</el-button>
+          <el-button slot="reference" style="margin-top: 1.2em;margin-right: 1.8em" size="small">{{ user }}</el-button>
+        </el-popover>
         <el-col :span="4">
           <div style="text-align: right">
-          <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
+            <el-image :src="require('@/assets/8.png')" style="width: 2.4em;top: 0.7em"></el-image>
           </div>
         </el-col>
       </el-row>
@@ -58,14 +55,15 @@
 <script>
 export default {
   name: 'Main',
-  data () {
+  data() {
     return {
-      currentMenu: "/Main/Home"
+      currentMenu: localStorage.getItem('path'),
+      user: localStorage.getItem('userName')
     }
   },
   methods: {
-    LogOutNotification () {
-      this.$confirm('确认注销?', 'Warning', {
+    LogOutNotification() {
+      this.$confirm('确认注销?', '警告', {
         confirmButtonText: '是',
         cancelButtonText: '否',
         type: 'warning'
@@ -81,6 +79,7 @@ export default {
               message: '注销成功!'
             })
             localStorage.removeItem('token')
+            localStorage.removeItem('userName')
             this.$router.replace({path: '/'})
           } else if (res.data.code === 401) {
             this.$message.error('登录过期，请重新登录');
@@ -96,14 +95,14 @@ export default {
         })
       })
     },
-    handleSelect (key, keyPath) {
+    handleSelect(key, keyPath) {
       if (key === this.$route.path) {
         return
       }
       this.$router.push(key)
     }
   },
-  created () {
+  created() {
     this.$http.get('/authority', {
       headers: {
         'token': localStorage.getItem('token')
@@ -116,11 +115,16 @@ export default {
         this.$router.push('/Error')
       }
     })
+    let path = localStorage.getItem('path')
+    if (path === '/Main/recordList/recordDetail') {
+      this.currentMenu = '/Main/recordList'
+    }
   },
   watch: {
     $route(e) {
+      localStorage.setItem('path', e.path)
       this.currentMenu = e.path;  // e里面的是当前路由的信息
-      if(e.path.indexOf("Detail")!==-1){
+      if (e.path.indexOf("Detail") !== -1) {
         this.currentMenu = "/Main/recordList"
       }
     },
@@ -137,14 +141,16 @@ export default {
   border-bottom: 1px;
   font-size: 12px;
 }
-.el-menu-item{
+
+.el-menu-item {
   font-size: 12px;
 }
+
 .el-header, .el-footer {
   background-color: #FFFFFF;
   color: #333;
   line-height: 3em;
-  border-bottom:1px solid #D3DCE6
+  border-bottom: 1px solid #D3DCE6
 }
 
 .el-aside {
@@ -156,7 +162,7 @@ export default {
 .el-main {
   background-color: #FFFFFF;
   color: #333;
-  border-left:1px solid #D3DCE6;
+  border-left: 1px solid #D3DCE6;
   padding-right: 0;
   width: 80em;
   height: 100%;
@@ -191,7 +197,7 @@ body > .el-container {
   /*padding: 10px;*/
 }
 
-.top_left_text{
+.top_left_text {
   position: absolute;
   left: 80px;
 }
